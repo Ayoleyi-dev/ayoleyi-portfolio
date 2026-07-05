@@ -1,7 +1,6 @@
 import React from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ZAxis } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-// Real data sampled from your spotify_tracks.csv!
 const spotifyData = [
   { "name": "TITLE IDOL", "duration_min": 4.47, "popularity": 16 },
   { "name": "How Far I'll Go", "duration_min": 2.72, "popularity": 67 },
@@ -105,6 +104,7 @@ const spotifyData = [
   { "name": "Afrobeat - Radio Mix", "duration_min": 3.82, "popularity": 0 }
 ];
 
+
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -121,34 +121,30 @@ const CustomTooltip = ({ active, payload }) => {
 
 const SpotifyChart = () => {
   return (
-    <div className="w-full h-full min-h-[300px] flex flex-col p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h5 className="text-slate-200 text-sm font-bold">Does Song Length Affect Popularity?</h5>
-        <span className="flex items-center gap-2 text-xs text-slate-500">
-          <span className="w-2 h-2 rounded-full bg-emerald-400"></span> Hover dots
-        </span>
+    <div className="w-full h-full min-h-[250px] flex flex-col p-2">
+      <div className="flex justify-between items-center mb-2 px-2">
+        <h5 className="text-slate-300 text-sm font-semibold">Does Song Length Affect Popularity?</h5>
       </div>
       <div className="flex-grow">
         <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 10, right: 20, bottom: 20, left: -10 }}>
+          <ScatterChart margin={{ top: 10, right: 20, bottom: 30, left: 10 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
             <XAxis 
               type="number" 
               dataKey="duration_min" 
               stroke="#64748b" 
-              tick={{ fill: '#64748b', fontSize: 12 }}
+              tick={{ fill: '#64748b', fontSize: 11 }}
               domain={[0, 10]} 
-              label={{ value: 'Duration (Mins)', position: 'insideBottom', offset: -10, fill: '#64748b', fontSize: 12 }}
+              label={{ value: 'Duration (Mins)', position: 'insideBottom', offset: -5, fill: '#64748b', fontSize: 12 }}
             />
             <YAxis 
               type="number" 
               dataKey="popularity" 
               stroke="#64748b" 
-              tick={{ fill: '#64748b', fontSize: 12 }}
+              tick={{ fill: '#64748b', fontSize: 11 }}
               domain={[0, 100]}
-              label={{ value: 'Popularity', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 12 }}
+              label={{ value: 'Popularity', angle: -90, position: 'insideLeft', offset: 10, fill: '#64748b', fontSize: 12 }}
             />
-            <ZAxis type="number" dataKey="popularity" range={[50, 400]} />
             <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', stroke: '#334155' }} />
             <Scatter name="Tracks" data={spotifyData} fill="#34d399" opacity={0.8} />
           </ScatterChart>

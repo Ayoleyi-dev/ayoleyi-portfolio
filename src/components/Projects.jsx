@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sportify from './Sportify';
+import SpotifyChart from './Sportify'; // Imports your chart
 
 const projects = [
   {
@@ -13,72 +13,71 @@ const projects = [
   },
   {
     title: "Agrospectra NDVI Analysis",
-    description: "Developed a Python pipeline utilizing OpenCV and NumPy to process UAV/Satellite multispectral bands, generating spatial heatmaps to assess crop health.",
-    tags: ["Python", "NumPy", "OpenCV", "Geospatial Analysis"],
+    description: "Processed satellite raster data to analyze Normalized Difference Vegetation Index (NDVI), providing actionable agricultural yield insights.",
+    tags: ["Python", "Folium", "Geospatial Analysis"],
     mediaType: "image",
     mediaSrc: "/images/ndvi_heatmap_output.png",
     github: "https://github.com/Ayoleyi-dev/Agrospectra-NDVI-Analysis",
-    notion: "YOUR_NOTION_LINK"
+    notion: "https://opposite-cloudberry-e53.notion.site/10facf464a654c9b9279d566b35c2cfb"
   },
   {
     title: "Spotify Exploratory Data Analysis",
     description: "Interactive dashboard exploring audio features like danceability, energy, and tempo to predict track popularity.",
     tags: ["React", "Recharts", "Python", "Pandas"],
-    mediaType: "component", 
-    videoSrc: "/videos/spotify-demo.mp4", // Added video source for the toggle
+    mediaType: "spotify", // Custom type to trigger the toggle
+    videoSrc: "/videos/spotify-demo.mp4", // Your video file goes here
     github: "https://github.com/Ayoleyi-dev/Spotify-EDA-project",
     notion: "https://opposite-cloudberry-e53.notion.site/10facf464a654c9b9279d566b35c2cfb"
   }
 ];
 
-// Extracted Card Component to safely use useState hooks inside the map loop
+// Extracted to its own component so useState works properly inside the map
 const ProjectCard = ({ proj }) => {
-  const [activeView, setActiveView] = useState(proj.videoSrc ? 'video' : 'chart');
+  const [activeTab, setActiveTab] = useState('chart');
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 bg-slate-900/50 p-6 md:p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-colors">
       
       {/* Media Container */}
-      <div className="w-full lg:w-1/2 aspect-video bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col">
-        {proj.videoSrc && proj.mediaType === 'component' ? (
+      <div className="w-full lg:w-1/2 bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col">
+        {proj.mediaType === 'video' && (
+          <video src={proj.mediaSrc} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+        )}
+        {proj.mediaType === 'image' && (
+          <img src={proj.mediaSrc} alt={`${proj.title} visualization`} className="w-full h-full object-contain" />
+        )}
+
+        {/* SPOTIFY TOGGLE LOGIC */}
+        {proj.mediaType === 'spotify' && (
           <>
-            {/* Toggle Tabs */}
-            <div className="flex border-b border-slate-800 bg-slate-950 shrink-0">
-              <button 
-                onClick={() => setActiveView('chart')}
-                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeView === 'chart' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-slate-900/50' : 'text-slate-500 hover:text-slate-300'}`}
+            {/* Tab Buttons */}
+            <div className="flex border-b border-slate-800 bg-slate-900 shrink-0">
+              <button
+                onClick={() => setActiveTab('chart')}
+                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeTab === 'chart' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-slate-950' : 'text-slate-500 hover:text-slate-300'}`}
               >
                 📊 Interactive Chart
               </button>
-              <button 
-                onClick={() => setActiveView('video')}
-                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeView === 'video' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-slate-900/50' : 'text-slate-500 hover:text-slate-300'}`}
+              <button
+                onClick={() => setActiveTab('video')}
+                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeTab === 'video' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-slate-950' : 'text-slate-500 hover:text-slate-300'}`}
               >
                 🎥 Video Walkthrough
               </button>
             </div>
-            
-            {/* Content Area */}
-            <div className="flex-grow relative bg-slate-900 min-h-[250px]">
-              {activeView === 'chart' && <Sportify />}
-              {activeView === 'video' && (
-                <video 
-                  src={proj.videoSrc} 
-                  controls 
-                  className="w-full h-full object-contain bg-black" 
+
+            {/* Tab Content */}
+            <div className="flex-grow relative bg-slate-950 min-h-[300px]">
+              {activeTab === 'chart' && <SpotifyChart />}
+              {activeTab === 'video' && (
+                <video
+                  src={proj.videoSrc}
+                  controls
+                  className="w-full h-full object-contain bg-black"
                 />
               )}
             </div>
           </>
-        ) : (
-          <div className="w-full h-full flex items-center justify-center relative">
-            {proj.mediaType === 'video' && (
-              <video src={proj.mediaSrc} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-            )}
-            {proj.mediaType === 'image' && (
-              <img src={proj.mediaSrc} alt={`${proj.title} visualization`} className="w-full h-full object-cover" />
-            )}
-          </div>
         )}
       </div>
 

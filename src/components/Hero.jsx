@@ -2,10 +2,11 @@ import React from 'react';
 
 const Hero = () => {
   return (
+    // CHANGED: flex-col-reverse puts the image on top for mobile, md:flex-row puts it on the right for desktop
     <section className="min-h-[85vh] flex flex-col-reverse md:flex-row items-center justify-between gap-8 md:gap-12 pt-6 md:pt-10">
       
       {/* Text Content */}
-      <div className="flex-1 flex flex-col gap-4 md:gap-6 w-full text-center md:text-left">
+      <div className="flex-1 flex flex-col gap-4 md:gap-6 text-center md:text-left">
         <div>
           <h2 className="text-emerald-400 font-mono text-base md:text-lg mb-2">Hello, I'm</h2>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-slate-100 tracking-tight mb-3 md:mb-4 leading-tight">
@@ -22,7 +23,7 @@ const Hero = () => {
 
         {/* Social Links for Recruiters */}
         <div className="flex items-center gap-4 md:gap-6 mt-2 justify-center md:justify-start flex-wrap">
-          <a href="mailto:your.email@gmail.com" className="text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-2">
+          <a href="mailto:ayoleyi05@gmail.com" className="text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             <span className="text-sm font-semibold">Email</span>
           </a>
@@ -35,15 +36,13 @@ const Hero = () => {
             <span className="text-sm font-semibold">GitHub</span>
           </a>
           <a href="https://x.com/AYOLEYING" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-2">
-  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-  <span className="text-sm font-semibold">X (Twitter)</span>
-</a>
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span className="text-sm font-semibold">X (Twitter)</span>
+          </a>
         </div>
 
         {/* 4 STANDARDIZED RESUME DOWNLOADS */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-4 md:mt-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 mt-4 md:mt-6">
           <a href="/Ayoleyi_Comprehensive_CV.pdf" download className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-2.5 md:px-4 md:py-3 rounded-lg text-center transition-colors shadow-lg shadow-emerald-500/20 text-xs sm:text-sm">
             Comprehensive CV
           </a>
@@ -54,13 +53,13 @@ const Hero = () => {
             Data Analytics
           </a>
           <a href="/Ayoleyi_Web_Development_CV.pdf" download className="border border-slate-600 hover:border-emerald-500 text-slate-300 hover:text-emerald-400 font-semibold px-3 py-2.5 md:px-4 md:py-3 rounded-lg text-center transition-all bg-slate-900/50 text-xs sm:text-sm">
-            Web Devlopment
+            Web Dev
           </a>
         </div>
       </div>
 
-      {/* Image Content - Now appears first on mobile */}
-      <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 relative flex-shrink-0 mb-4 md:mb-0">
+      {/* Image Content */}
+      <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 relative flex-shrink-0 mb-4 md:mb-0">
         <div className="absolute inset-0 bg-emerald-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
         <img 
           src="/images/ayoleyi.png" 
