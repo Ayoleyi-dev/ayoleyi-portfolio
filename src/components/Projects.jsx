@@ -3,6 +3,15 @@ import SpotifyChart from './Sportify'; // Imports your chart
 
 const projects = [
   {
+    title: "AI Homology Modeling & HTVS Docking",
+    description: "Executed a High-Throughput Virtual Screening of 88 ethnobotanicals against the Shigella dysenteriae ipaH virulence factor. Identified Sanguinarine (-8.3 kcal/mol) as a superior lead compound compared to clinical standards, mapping complex thermodynamic interactions and favorable ADME-Tox profiles.",
+    tags: ["Python", "ESMFold", "AutoDock Vina", "RDKit"],
+    mediaType: "image",
+    mediaSrc: "/images/Figure_2_Sanguinarine_3D.png",
+    github: "https://github.com/Ayoleyi-dev/Ai-Homology-Modeling",
+    manuscript: "https://github.com/Ayoleyi-dev/Ai-Homology-Modeling/blob/main/DOCS/Manuscript%20-%20Homology%20Modeling%20and%20Molecular%20Docking%20Analysis%20of%20the%20Shigella%20dysenteriae%20ipaH%20Protein.%20Ayoleyi.docx"
+  },
+  {
     title: "Public Health Data Warehouse & Analytics",
     description: "Architected an end-to-end ETL pipeline and dimensional model (SQL/TSQL) to process and visualize public health datasets.",
     tags: ["SQL", "ETL", "Power BI", "Data Warehousing"],
@@ -24,14 +33,13 @@ const projects = [
     title: "Spotify Exploratory Data Analysis",
     description: "Interactive dashboard exploring audio features like danceability, energy, and tempo to predict track popularity.",
     tags: ["React", "Recharts", "Python", "Pandas"],
-    mediaType: "spotify", // Custom type to trigger the toggle
-    videoSrc: "/videos/spotify-demo.mp4", // Your video file goes here
+    mediaType: "spotify",
+    videoSrc: "/videos/spotify-demo.mp4", 
     github: "https://github.com/Ayoleyi-dev/Spotify-EDA-project",
     notion: "https://opposite-cloudberry-e53.notion.site/10facf464a654c9b9279d566b35c2cfb"
   }
 ];
 
-// Extracted to its own component so useState works properly inside the map
 const ProjectCard = ({ proj }) => {
   const [activeTab, setActiveTab] = useState('chart');
 
@@ -50,7 +58,6 @@ const ProjectCard = ({ proj }) => {
         {/* SPOTIFY TOGGLE LOGIC */}
         {proj.mediaType === 'spotify' && (
           <>
-            {/* Tab Buttons */}
             <div className="flex border-b border-slate-800 bg-slate-900 shrink-0">
               <button
                 onClick={() => setActiveTab('chart')}
@@ -66,7 +73,6 @@ const ProjectCard = ({ proj }) => {
               </button>
             </div>
 
-            {/* Tab Content */}
             <div className="flex-grow relative bg-slate-950 min-h-[300px]">
               {activeTab === 'chart' && <SpotifyChart />}
               {activeTab === 'video' && (
@@ -97,9 +103,20 @@ const ProjectCard = ({ proj }) => {
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             Source Code
           </a>
-          <a href={proj.notion} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-2">
-            Read Case Study →
-          </a>
+          
+          {/* Renders Notion link if it exists */}
+          {proj.notion && (
+            <a href={proj.notion} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-2">
+              Read Case Study →
+            </a>
+          )}
+          
+          {/* Renders Manuscript link if it exists */}
+          {proj.manuscript && (
+            <a href={proj.manuscript} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-2">
+              Read Manuscript →
+            </a>
+          )}
         </div>
       </div>
     </div>
