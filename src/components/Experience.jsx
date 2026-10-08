@@ -1,69 +1,55 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
-const Experience = () => {
+const experiences = [
+  {
+    title: 'Data & Analytics Officer',
+    organisation: 'DIAMS',
+    type: 'Operations & reporting',
+    description: 'I maintain operational trackers, validate incoming records and prepare recurring KPI reports. I also improve Google Sheets reporting workflows with Apps Script.'
+  },
+  {
+    title: 'Analytics work',
+    organisation: 'Silver Lue',
+    type: 'Audience & market insights',
+    description: 'I cleaned and analysed audience and content-performance data, summarising patterns and recommendations for publishing decisions.'
+  },
+  {
+    title: 'Data & Market Analytics Consultant',
+    organisation: 'Son of I Am · Client project',
+    type: 'Commercial research',
+    description: 'I assembled source-tracked artwork price comparisons in Excel to support discussion of pricing and positioning. Findings are comparative research, not verified sales results.'
+  },
+  {
+    title: 'SIWES Trainee',
+    organisation: 'NAFDAC · Analytical Chemistry / HPLC laboratories',
+    type: 'Laboratory data integrity',
+    description: 'I have worked with structured analytical documentation, quality-control procedures and traceable records in laboratory settings.'
+  }
+];
+
+export default function Experience() {
   return (
-    <section className="flex flex-col gap-8">
-      <motion.h3 
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-3xl font-bold text-slate-100 border-b border-slate-800 pb-4"
-      >
-        Leadership & Technical Consulting
-      </motion.h3>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* ULSSA Experience */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="p-6 bg-slate-900/40 rounded-xl border border-slate-800"
-        >
-          <div className="text-emerald-400 font-mono text-sm mb-2">Community Manager & Tutor</div>
-          <h4 className="text-xl font-bold text-slate-100 mb-2">ULSSA Tech for Students Programme</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Managed the community and served as an Assistant Tutor for the Data Analysis track. Translated complex data concepts for students during the 10-week virtual program.
-          </p>
-        </motion.div>
-
-        {/* Silver Lue Experience */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="p-6 bg-slate-900/40 rounded-xl border border-slate-800"
-        >
-          <div className="text-emerald-400 font-mono text-sm mb-2">Data Analyst Consultant</div>
-          <h4 className="text-xl font-bold text-slate-100 mb-2">Silver Lue</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Analyzed marketing strategies and campaign metrics, utilizing data insights to streamline operations and demonstrate a quantifiable increase in sales and performance.
-          </p>
-        </motion.div>
-
-        {/* Sonofiam Experience */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="p-6 bg-slate-900/40 rounded-xl border border-slate-800 md:col-span-2"
-        >
-          <div className="text-emerald-400 font-mono text-sm mb-2">Full-Stack Developer & Digital Strategist</div>
-          <h4 className="text-xl font-bold text-slate-100 mb-2">Sonofiam (sonofiam.com)</h4>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Built and deployed a custom e-commerce web platform. Managed the brand's digital architecture, including social media presence optimization and targeted ad campaigns.
-          </p>
-        </motion.div>
-
+    <section id="experience" aria-labelledby="experience-title" className="scroll-mt-24">
+      <div className="mb-9 max-w-3xl">
+        <p className="mb-2 font-mono text-sm uppercase tracking-widest text-emerald-400">Experience</p>
+        <h2 id="experience-title" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          The work behind the projects
+        </h2>
+        <p className="mt-4 leading-7 text-slate-400">
+          My focus is reliable reporting and practical analysis. I keep client data private and describe
+          work without attaching unsupported percentages or commercial outcomes.
+        </p>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {experiences.map((item) => (
+          <article key={item.organisation} className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">{item.type}</p>
+            <h3 className="mt-3 text-xl font-bold text-white">{item.title}</h3>
+            <p className="mt-1 text-sm font-medium text-slate-300">{item.organisation}</p>
+            <p className="mt-4 text-sm leading-7 text-slate-400">{item.description}</p>
+          </article>
+        ))}
       </div>
     </section>
   );
-};
-
-export default Experience;
+}
