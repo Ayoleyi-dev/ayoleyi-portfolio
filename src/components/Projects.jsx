@@ -1,139 +1,147 @@
-import React, { useState } from 'react';
-import SpotifyChart from './Sportify'; // Imports your chart
+import React from 'react';
 
 const projects = [
   {
-    title: "AI Homology Modeling & HTVS Docking",
-    description: "Executed a High-Throughput Virtual Screening of 88 ethnobotanicals against the Shigella dysenteriae ipaH virulence factor. Identified Sanguinarine (-8.3 kcal/mol) as a superior lead compound compared to clinical standards, mapping complex thermodynamic interactions and favorable ADME-Tox profiles.",
-    tags: ["Python", "ESMFold", "AutoDock Vina", "RDKit"],
-    mediaType: "image",
-    mediaSrc: "/images/Figure_2_Sanguinarine_3D.png",
-    github: "https://github.com/Ayoleyi-dev/Ai-Homology-Modeling",
-    manuscript: "https://github.com/Ayoleyi-dev/Ai-Homology-Modeling/blob/main/DOCS/Manuscript%20-%20Homology%20Modeling%20and%20Molecular%20Docking%20Analysis%20of%20the%20Shigella%20dysenteriae%20ipaH%20Protein.%20Ayoleyi.docx"
+    title: 'Public Health Data Warehouse & Analytics Pipeline',
+    area: 'Business intelligence · Healthcare',
+    description: 'I modelled a synthetic healthcare reporting scenario in SQL Server, added data-quality constraints and repeatable checks, and connected the output to Power BI.',
+    question: 'How can a healthcare team reliably track activity, patient categories and costs?',
+    evidence: 'SQL validation, dimensional modelling, Power BI reporting and CI checks.',
+    tags: ['SQL Server', 'T-SQL', 'Power BI', 'ETL'],
+    github: 'https://github.com/Ayoleyi-dev/Public-Health-Data-Warehouse-Analytics-Pipeline',
+    caseStudy: 'https://github.com/Ayoleyi-dev/Public-Health-Data-Warehouse-Analytics-Pipeline/blob/main/CASE_STUDY.md',
+    preview: 'healthcare'
   },
   {
-    title: "Public Health Data Warehouse & Analytics",
-    description: "Architected an end-to-end ETL pipeline and dimensional model (SQL/TSQL) to process and visualize public health datasets.",
-    tags: ["SQL", "ETL", "Power BI", "Data Warehousing"],
-    mediaType: "video",
-    mediaSrc: "/videos/powerbi-demo.mp4",
-    github: "https://github.com/Ayoleyi-dev/Public-Health-Data-Warehouse-Analytics-Pipeline-",
-    notion: "https://opposite-cloudberry-e53.notion.site/10facf464a654c9b9279d566b35c2cfb"
+    title: 'Jumia Nigeria Smartphone Market Analysis',
+    area: 'Commercial & market analytics',
+    description: 'I cleaned a historical snapshot of smartphone marketplace listings, corrected scraper parsing issues and explored brand presence, advertised prices and seller patterns.',
+    question: 'How do advertised prices and marketplace listings vary by brand and seller type?',
+    evidence: '1,960 initial rows; 1,908 in-scope smartphone-candidate listings. Listings are not sales.',
+    tags: ['Python', 'Pandas', 'SQL', 'Web scraping'],
+    github: 'https://github.com/Ayoleyi-dev/Jumia-Phone-Market-Webscraping-EDA',
+    caseStudy: 'https://github.com/Ayoleyi-dev/Jumia-Phone-Market-Webscraping-EDA/blob/main/reports/analysis_findings.md'
   },
   {
-    title: "Agrospectra NDVI Analysis",
-    description: "Processed satellite raster data to analyze Normalized Difference Vegetation Index (NDVI), providing actionable agricultural yield insights.",
-    tags: ["Python", "Folium", "Geospatial Analysis"],
-    mediaType: "image",
-    mediaSrc: "/images/ndvi_heatmap_output.png",
-    github: "https://github.com/Ayoleyi-dev/Agrospectra-NDVI-Analysis",
-    notion: "https://opposite-cloudberry-e53.notion.site/10facf464a654c9b9279d566b35c2cfb"
+    title: 'Hytale Player & Server Analytics',
+    area: 'Product analytics · Telemetry',
+    description: 'I built an analytics pipeline and dashboard for simulated player behaviour, then a Java server collector to capture observed lifecycle and health events on a local test server.',
+    question: 'How could a game team measure engagement and server health responsibly?',
+    evidence: 'Reproducible synthetic metrics and genuine local-server observations are explicitly separated.',
+    tags: ['Java', 'Python', 'SQLite', 'Streamlit'],
+    github: 'https://github.com/Ayoleyi-dev/Hytale-Data-Analysis-Project',
+    caseStudy: 'https://github.com/Ayoleyi-dev/Hytale-Data-Analysis-Project/blob/main/PROJECT_STORY.md',
+    demo: 'https://hytale-analytics-ayoleyi.streamlit.app'
   },
   {
-    title: "Spotify Exploratory Data Analysis",
-    description: "Interactive dashboard exploring audio features like danceability, energy, and tempo to predict track popularity.",
-    tags: ["React", "Recharts", "Python", "Pandas"],
-    mediaType: "spotify",
-    videoSrc: "/videos/spotify-demo.mp4", 
-    github: "https://github.com/Ayoleyi-dev/Spotify-EDA-project",
-    notion: "https://opposite-cloudberry-e53.notion.site/10facf464a654c9b9279d566b35c2cfb"
+    title: 'PII Privacy & Data Quality Pipeline',
+    area: 'Data validation · Privacy',
+    description: 'I wrote a Python workflow that checks synthetic customer data, pseudonymizes identifiers and produces privacy-aware quality reports.',
+    question: 'Can records be checked for quality without copying sensitive values into issue logs?',
+    evidence: 'Masking and pseudonymization rules, validation checks and automated tests. Synthetic data only.',
+    tags: ['Python', 'Data quality', 'Privacy', 'Pytest'],
+    github: 'https://github.com/Ayoleyi-dev/PII-Data-Privacy-QA-Pipeline'
+  },
+  {
+    title: 'AI Document Extraction QA Validator',
+    area: 'Data automation · Quality assurance',
+    description: 'I built post-extraction checks for invoice JSON, including schema validity, duplicate identifiers, line-item calculations and invoice reconciliation.',
+    question: 'How can bad extraction results be flagged before they reach downstream systems?',
+    evidence: 'Record-level issue reports and batch summaries, with tests for invalid inputs and financial mismatches.',
+    tags: ['Python', 'JSON Schema', 'Validation', 'Pytest'],
+    github: 'https://github.com/Ayoleyi-dev/AI-Document-Extraction-QA-Validator'
+  },
+  {
+    title: 'Excel Chocolate Sales Analysis',
+    area: 'Excel · Sales reporting',
+    description: 'I audited a historical sales workbook and built interactive views for KPI monitoring, products, markets and scenario planning.',
+    question: 'How can sales reporting help someone explore performance and plan a target?',
+    evidence: '1,094 historical transactions, filter-driven views, data audit and what-if planning.',
+    tags: ['Excel', 'PivotTables', 'SUMIFS', 'Scenario planning'],
+    github: 'https://github.com/Ayoleyi-dev/Excel-Chocolate-Sales-Analysis'
   }
 ];
 
-const ProjectCard = ({ proj }) => {
-  const [activeTab, setActiveTab] = useState('chart');
-
+function ProjectCard({ project, index }) {
   return (
-    <div className="flex flex-col lg:flex-row gap-8 bg-slate-900/50 p-6 md:p-8 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-colors">
-      
-      {/* Media Container */}
-      <div className="w-full lg:w-1/2 bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col">
-        {proj.mediaType === 'video' && (
-          <video src={proj.mediaSrc} autoPlay loop muted playsInline className="w-full h-full object-contain" />
+    <article className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 transition-colors hover:border-emerald-500/40">
+      <div className="flex h-full flex-col p-6 sm:p-7">
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400">{project.area}</p>
+          <span className="font-mono text-sm text-slate-500">{String(index + 1).padStart(2, '0')}</span>
+        </div>
+        <h3 className="mt-4 text-xl font-bold tracking-tight text-white sm:text-2xl">{project.title}</h3>
+        <p className="mt-3 text-sm leading-7 text-slate-300">{project.description}</p>
+        {project.preview === 'healthcare' && (
+          <video
+            className="mt-5 w-full rounded-lg border border-slate-700 bg-slate-950"
+            src="/videos/powerbi-demo.mp4"
+            controls
+            preload="none"
+            aria-label="Power BI healthcare dashboard walkthrough"
+          />
         )}
-        {proj.mediaType === 'image' && (
-          <img src={proj.mediaSrc} alt={`${proj.title} visualization`} className="w-full h-full object-contain" />
-        )}
-
-        {/* SPOTIFY TOGGLE LOGIC */}
-        {proj.mediaType === 'spotify' && (
-          <>
-            <div className="flex border-b border-slate-800 bg-slate-900 shrink-0">
-              <button
-                onClick={() => setActiveTab('chart')}
-                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeTab === 'chart' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-slate-950' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                📊 Interactive Chart
-              </button>
-              <button
-                onClick={() => setActiveTab('video')}
-                className={`flex-1 py-3 text-sm font-bold transition-colors ${activeTab === 'video' ? 'text-emerald-400 border-b-2 border-emerald-400 bg-slate-950' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                🎥 Video Walkthrough
-              </button>
-            </div>
-
-            <div className="flex-grow relative bg-slate-950 min-h-[300px]">
-              {activeTab === 'chart' && <SpotifyChart />}
-              {activeTab === 'video' && (
-                <video
-                  src={proj.videoSrc}
-                  controls
-                  className="w-full h-full object-contain bg-black"
-                />
-              )}
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Content Container */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center gap-4">
-        <h4 className="text-2xl font-bold text-slate-100">{proj.title}</h4>
-        <p className="text-slate-400 leading-relaxed">{proj.description}</p>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {proj.tags.map(tag => (
-            <span key={tag} className="px-3 py-1 bg-slate-800 text-emerald-400 text-xs font-mono rounded-full">
-              {tag}
-            </span>
+        <div className="mt-5 rounded-xl border border-slate-800 bg-slate-950/70 p-4">
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Business question</p>
+          <p className="mt-2 text-sm leading-6 text-slate-200">{project.question}</p>
+          <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Evidence / scope</p>
+          <p className="mt-2 text-sm leading-6 text-slate-300">{project.evidence}</p>
+        </div>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span key={tag} className="rounded-full bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300">{tag}</span>
           ))}
         </div>
-        <div className="flex gap-4 mt-6">
-          <a href={proj.github} target="_blank" rel="noreferrer" className="text-sm font-bold text-slate-300 hover:text-white flex items-center gap-2">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            Source Code
+        <div className="mt-auto flex flex-wrap gap-x-5 gap-y-3 pt-7 text-sm font-semibold">
+          <a className="text-emerald-400 hover:text-emerald-300 focus-visible:underline" href={project.github} target="_blank" rel="noreferrer">
+            View repository ↗
           </a>
-          
-          {/* Renders Notion link if it exists */}
-          {proj.notion && (
-            <a href={proj.notion} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-2">
-              Read Case Study →
+          {project.caseStudy && (
+            <a className="text-slate-200 hover:text-white focus-visible:underline" href={project.caseStudy} target="_blank" rel="noreferrer">
+              Read case study ↗
             </a>
           )}
-          
-          {/* Renders Manuscript link if it exists */}
-          {proj.manuscript && (
-            <a href={proj.manuscript} target="_blank" rel="noreferrer" className="text-sm font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-2">
-              Read Manuscript →
+          {project.demo && (
+            <a className="text-slate-200 hover:text-white focus-visible:underline" href={project.demo} target="_blank" rel="noreferrer">
+              Live dashboard ↗
             </a>
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
-};
+}
 
-const Projects = () => {
+export default function Projects() {
   return (
-    <section id="projects" className="flex flex-col gap-10">
-      <h3 className="text-3xl font-bold text-slate-100 border-b border-slate-800 pb-4">Featured Research & Analytics</h3>
-      <div className="grid grid-cols-1 gap-16">
-        {projects.map((proj, idx) => (
-          <ProjectCard key={idx} proj={proj} />
+    <section id="projects" aria-labelledby="projects-title" className="scroll-mt-24">
+      <div className="mb-9 max-w-3xl">
+        <p className="mb-2 font-mono text-sm uppercase tracking-widest text-emerald-400">Portfolio</p>
+        <h2 id="projects-title" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Selected analytics & automation projects
+        </h2>
+        <p className="mt-4 leading-7 text-slate-400">
+          I show the questions I tried to answer, the systems I built and the limits of the data.
+          Each project links directly to the source code or supporting documentation.
+        </p>
+      </div>
+      <div className="grid items-stretch gap-5 lg:grid-cols-2">
+        {projects.map((project, index) => (
+          <ProjectCard key={project.github} project={project} index={index} />
         ))}
+      </div>
+      <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-7">
+        <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400">Also exploring</p>
+        <h3 className="mt-2 text-xl font-bold text-white">Computational biology & scientific analytics</h3>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400">
+          I study Biochemistry and also explore bioinformatics, structural modelling and molecular docking.
+          My in-silico modelling work is exploratory research; computational predictions are not laboratory
+          validation or evidence of clinical effectiveness.
+        </p>
+        <a href="https://github.com/Ayoleyi-dev/Ai-Homology-Modeling" target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm font-semibold text-emerald-400 hover:text-emerald-300">
+          Explore molecular modelling research ↗
+        </a>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}
