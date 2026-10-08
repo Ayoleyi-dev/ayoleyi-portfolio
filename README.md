@@ -21,33 +21,33 @@ I also keep a separate link to my exploratory computational biology work.
 
 Requirements: Node.js compatible with Vite 8 (Node.js 20.19+ or 22.12+) and npm.
 
-\`\`\`bash
+```bash
 npm ci
 npm run dev
-\`\`\`
+```
 
 For a production build:
 
-\`\`\`bash
+```bash
 npm run check:content
 npm run build
-\`\`\`
+```
 
-The build output is in \`dist/\`. Preview with \`npm run preview\`.
+The build output is in `dist/`. Preview with `npm run preview`.
 
 ## Editing content
 
 | File | Responsibility |
 | --- | --- |
-| \`src/components/Hero.jsx\` | Intro, professional positioning and contact actions |
-| \`src/components/Projects.jsx\` | Project descriptions, evidence, repository and demo links |
-| \`src/components/Experience.jsx\` | Experience snapshots without exposing private data |
-| \`src/components/Contact.jsx\` | Recruiter contact options |
-| \`src/App.jsx\` | Navigation and page composition |
-| \`index.html\` | Metadata and social previews |
-| \`scripts/check-content.mjs\` | Simple guardrails for known content/link regressions |
+| `src/components/Hero.jsx` | Intro, professional positioning and contact actions |
+| `src/components/Projects.jsx` | Project descriptions, evidence, repository and demo links |
+| `src/components/Experience.jsx` | Experience snapshots without exposing private data |
+| `src/components/Contact.jsx` | Recruiter contact options |
+| `src/App.jsx` | Navigation and page composition |
+| `index.html` | Metadata and social previews |
+| `scripts/check-content.mjs` | Simple guardrails for known content/link regressions |
 
-The public media files are in \`public/images\` and \`public/videos\`.
+The public media files are in `public/images` and `public/videos`.
 
 ## Data integrity and scope
 
@@ -58,9 +58,9 @@ The public media files are in \`public/images\` and \`public/videos\`.
 
 ## Before deploying
 
-1. Run \`npm run check:content\` and \`npm run build\`.
+1. Run `npm run check:content` and `npm run build`.
 2. Open all project links and confirm the external demo is running.
-3. Confirm that \`https://ayoleyi-portfolio.vercel.app/\` is still the correct public production domain.
+3. Confirm that `https://ayoleyi-portfolio.vercel.app/` is still the correct public production domain.
 4. Review content and CV positioning against current applications.
 5. Preview the mobile layout and video playback before merging or deploying.
 
